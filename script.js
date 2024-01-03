@@ -1,1 +1,48 @@
 //your JS code here. If required.
+const input = document.getElementById('ip');
+const btn = document.getElementById('btn');
+const output = document.getElementById('output');
+
+btn.addEventListener('click', () => {
+  let number = parseInt(input.value);
+  
+  firstPromise(number)
+    .then(num => secondPromise(num)) 
+    .then(num => thirdPromise(num))
+    .then(num => fourthPromise(num)) 
+    .then(num => fifthPromise(num))
+    .then(finalResult => {
+      output.textContent = `Final Result: ${finalResult}`;
+    })
+    .catch(err => console.error(err));
+});
+
+function firstPromise(num) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      output.textContent = `Result: ${num}`;
+      resolve(num);
+    }, 2000);
+  });
+}
+
+function secondPromise(num) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      output.textContent = `Result: ${num}`;
+      resolve(num);
+    }, 2000); 
+  });
+}
+
+function thirdPromise(num) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const result = num * 2;
+      output.textContent = `Result: ${result}`;
+      resolve(result);
+    }, 1000);
+  });
+}
+
+// and so on for remaining promises
